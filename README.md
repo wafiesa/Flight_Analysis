@@ -133,6 +133,8 @@ The query above will generate huge dataset exceeding 1.3GB and data this big wil
 
 Now, we will execute query as below:
 
+#### Performing Query in Hive
+
 
 ![DayofMonth](https://drive.google.com/uc?export=view&id=1-C2vwmYG3gMc7B4zRWGUhrONEpBqOK9h)
 
@@ -229,7 +231,7 @@ In a separate analysis, it was observed that Alaska Airlines flight number 64 wa
 
 ## Recommendations
 
-#### Choosing Carriers
+#### Choosing Airliners
 
 When selecting an airline, consider to review on-time performance, cancellation policies for each the choosen routes. Based on the analysis above, we can use the findings to choose wisely for a better journey.
 
