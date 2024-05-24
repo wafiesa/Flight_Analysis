@@ -191,6 +191,8 @@ Weather-related delays accounted for 3,408,203 minutes. These delays are due to 
 
 Lastly, security delays are the least common cause, with 100,274 minutes of delay. This includes delays due to evacuations of terminals, re-boarding of aircraft due to security breaches, inoperative screening equipment and long lines at screening areas.
 
+![BargraphReasons](https://drive.google.com/uc?export=view&id=16-yooNRt5B2BHTV46Wh2s77cfiE7xkAC)
+
 | Reason        | Total Time (minutes)    |
 |---------------|---------------|
 | Late Aircraft | 22091176      |
@@ -215,6 +217,16 @@ Lastly, security delays are the least common cause, with 100,274 minutes of dela
 
 Another potential factor contributing to flight cancellations could be low passenger bookings, which may lead airlines to cancel flights. Additionally, technical issues with the flights, not included in the dataset, might also contribute to these cancellations.
 
+**Performing Multiple Linear Regression**
+
+We can perform multiple linear regression to identify coefficients among independent variables in the table above. Ideally, this regression will determine the response of variables to the dependent variable as the MLR model below:
+
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_4+ \beta_5 X_5+ \beta_6 X_6 + \beta_7 X_7 + \beta_8 X_8$$
+
+From there, we are able to develop a multiple linear regression model to determine response of dependent variable to to the independent variables as follow:
+
+$$Total Cancellation = 0.0637 -0.0637(Diverted) - 0.02004(Weather) - 0.04669(NAS) -0.02333(Security) - 0.0403(Late Aircraft) + 0(Flight Num) + 0(Carrier) + 0(Origin Airport)$$
+
 ## 4. Most Frequent Delays And Cancellations
 
 |Flight Number	|Carrier	|Total Delay (minutes)	|Total Cancellations|
@@ -238,6 +250,9 @@ When selecting an airline, consider to review on-time performance, cancellation 
 #### Route Selections
 
 Choosing the right flight route is crucial for enhancing your travel experience. Opt for ideal flights to avoid potential delays or possibly cancellations. Seasonal weather patterns should also influence your decision, as certain routes might be prone to weather-related disruptions.
+
+![NumberofFlights](https://drive.google.com/uc?export=view&id=1hANtQRhpY7nOmvQacN0Jk0w8hokkf_Ch)
+
 
 ## Conclusion
 
