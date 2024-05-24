@@ -27,10 +27,10 @@ Weather-related disruptions and airport congestion further contributed to delays
 
 ## Dataset Information
 
-*[_**'2007.csv'**_](https://drive.google.com/file/d/1_uxUWJTDOBT0qDo_3B2zsSsPqs681M0v/view?usp=drive_link) contains flight data from Kaggle.
-*[_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
-*[_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
-*[_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
+* [_**'2007.csv'**_](https://drive.google.com/file/d/1_uxUWJTDOBT0qDo_3B2zsSsPqs681M0v/view?usp=drive_link) contains flight data from Kaggle.
+* [_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
+* [_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
+* [_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
 
 
 #### Flight Data 2007 Table
@@ -78,9 +78,6 @@ Weather-related disruptions and airport congestion further contributed to delays
 | **issue_date**: Date Start Operating  | string   | **year**: Manufacture Year        | int      |
 | **model**: Aircraft Model             | string   |                                   |          |
 
-🔶 Insights: The data contains 2870 rows with 10 columns.  
-
-The dataset_2022.csv provides detailed information on property transactions, including property type, district, mukim, scheme name/area, transaction date (month and year), tenure, land area, unit, main floor area, and transaction price. This information is useful for exploratory analysis.
 
 #### Data Import To Hadoop File And Hive Database
 
