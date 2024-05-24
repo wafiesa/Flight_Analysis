@@ -18,19 +18,19 @@ Weather-related disruptions and airport congestion further contributed to delays
 
 ## Code and Resources Used
 
-* __Hortonworks_HDP_Sandbox Version: 2.6.5.0
-* __Putty Version: 0.81
-* __Hive Version: 1.2.1000
-* __Google_Colab 
-* __Packages__: pandas, numpy, matplotlib, seaborn, plotly express
-* __Dataset_Source__: (Kaggle) https://tinyurl.com/u8rzvdsx
+* Hortonworks HDP Sandbox Version: 2.6.5.0
+* Putty Version: 0.81
+* Hive Version: 1.2.1000
+* Google Colab 
+* Packages: pandas, numpy, matplotlib, seaborn, plotly express
+* Dataset Source: (Kaggle) https://tinyurl.com/u8rzvdsx
 
 ## Dataset Information
 
-[_**'2007.csv'**_](https://drive.google.com/file/d/1_uxUWJTDOBT0qDo_3B2zsSsPqs681M0v/view?usp=drive_link) contains flight data from Kaggle.
-[_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
-[_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
-[_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
+*[_**'2007.csv'**_](https://drive.google.com/file/d/1_uxUWJTDOBT0qDo_3B2zsSsPqs681M0v/view?usp=drive_link) contains flight data from Kaggle.
+*[_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
+*[_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
+*[_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
 
 
 #### Flight Data 2007 Table
@@ -162,13 +162,19 @@ Now, we will execute query as below:
 
 **Image 9: Query to extract most frequent delays and flight cancellations.**
 
+#### The Heatmap Day of Month
+
 ![HeatmapDayofMonth](https://drive.google.com/uc?export=view&id=1U-pjZRf6CW7lfONylPoC0yAacAuK11Br)
 
 🔶 Insights: From the figure above, we can observe that the least delayed flights during the day were in the time intervals of 0000-0259 hour and 0300-0559 hour. This early morning flights have the lowest delays.
 
+#### The Heatmap Day of Week
+
 ![HeatmapDayofWeek](https://drive.google.com/uc?export=view&id=1Ih2BdhBbZvW8yKaw1jKQBAdzGjIUqACb)
 
 🔶 Insights: From the Heatmap of Departure Delays by Time Interval and Day of Week, we can observe that the least delayed flights during the week were on Wednesday in the time intervals 0000-0259.
+
+#### The Heatmap of Month
 
 ![HeatmapofMonth](https://drive.google.com/uc?export=view&id=1fXQc4ArwRgSF9xdGBejLs6B-35bDJymJ)
 
