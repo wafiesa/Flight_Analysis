@@ -130,7 +130,7 @@ We can join the selected variables using the command below:
 
 **Image 3: Query to join all four tables for better insights.**
 
-**1. Optimal Times In Day, Week And Year For Minimizing Flight Delays**
+## 1. Optimal Times In Day, Week And Year For Minimizing Flight Delays
 
 The query above will generate huge dataset exceeding 1.3GB and data this big will not ideal for local data processing. Thus we will carefully select the suitable variables that could contribute to flight delays and cancellations.
 
@@ -149,7 +149,7 @@ Now, we will execute query as below:
 
 **Image 6: Query to extract delays over the months.**
 
-![PrimaryFactorsDelays](https://drive.google.com/uc?export=view&id=1lZe6_sutUtiKUCXol_IdHaeHlqSiSdnL)
+![PrimaryFactorsDelays](https://drive.google.com/uc?export=view&id=1JghPvwrHt16RYbcYGaUf9ys4_HaQst_f)
 
 
 **Image 7: Query to extract primary factors for flight delays and cancellations.**
@@ -174,7 +174,7 @@ Now, we will execute query as below:
 
 🔶Insights: From the Heatmap of Departure Delays by Time Interval and Month, we can observe that the least delayed flights during the year was on the month of February 2007 in the time intervals 0000-0259.
 
-#### 2. Primary Factors Contributing Flight Delays
+## 2. Primary Factors Contributing Flight Delays
 
 From the table below, we can observe that the most significant factor, with a total of 22,091,176 minutes of delay is the caused from Late Aircraft. Delays caused by a late incoming aircraft often cascade to affect the departure times of subsequent flights operated by the same aircraft.
 
@@ -196,10 +196,10 @@ Lastly, security delays are the least common cause, with 100,274 minutes of dela
 
 🔶Insights: The table above shows that late aircraft delays were the highest cause of delay, totalling 22,091,176 minutes. This was followed by delays caused by the carriers, totalling 16,590,482 minutes.
 
-#### 3. Factors Leading To Flight Cancellations
+## 3. Factors Leading To Flight Cancellations
 
 |Month	|Flight Number	|Carrier Description	|Destination Airport	|Origin Airport	|Diverted	|Weather Delay	|NAS Delay	|Security Delay	|Late Aircraft Delay	|Cancelled	|Total Cancellations|
-|-------|---------|--------|--------|------|---------|---------|---------|--------|-------|------|-----|------|
+|---------|--------|--------|------|---------|---------|---------|--------|-------|------|-----|------|
 |1	|33	|Alaska Airlines Inc.	|Ted Stevens Anchorage International	|Kodiak	|0	|0	|0	|0	|0	|1	|13|
 |1	|32	|Alaska Airlines Inc.	|Kodiak	|Ted Stevens Anchorage International	|0	|0	|0	|0	|0	|1	|13|
 |1	|7098	|Mesa Airlines Inc.	|Denver Intl	|Aspen-Pitkin Co/Sardy	|0	|0	|0	|0	|0	|1	|11|
@@ -210,7 +210,7 @@ Lastly, security delays are the least common cause, with 100,274 minutes of dela
 
 Another potential factor contributing to flight cancellations could be low passenger bookings, which may lead airlines to cancel flights. Additionally, technical issues with the flights, not included in the dataset, might also contribute to these cancellations.
 
-#### 4. Most Frequent Delays And Cancellations
+## 4. Most Frequent Delays And Cancellations
 
 |Flight Number	|Carrier	|Total Delay (minutes)	|Total Cancellations|
 |----|----|----|------|
