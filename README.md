@@ -1,267 +1,214 @@
-# Flight Delays And Cancellations In 2007
+# Interactive Map For Single and Double Storey Terraced Property Sale For 2022 In Melaka
 
 ## Project Overview 
 
-This project proposes data analysis of flight data for the year 2007. This analysis encompasses critical parameters such as flight delays, cancellations and the factors influencing these events. By examining this data, we can identify trends, patterns and anomalies. 
+This project proposes the creation of an interactive map that will contain detailed information about all the single storey and double storey terraced properties sold in Melaka in 2022. The map will serve as a tool for housing developers to develop effective pricing and business strategies for future developments in Melaka, taking into account the current market dynamics.   
 
-The 2007 dataset is particularly valuable as it captures a unique historical perspective. Utilizing statistical techniques and data visualization tools, this analysis aims to enhance our understanding of flight dynamics and contribute to better decision-making in the industry.
+In 2022, a total of 2870 transactions were made for single storey and double storey terraced houses in Melaka. The property sales for these houses amounted to RM869,477,476.00. These transactions include both freehold and leasehold properties, and cover 457 areas or schemes located in three districts Melaka Tengah, Alor Gajah, and Jasin.
 
-![Aeroplane.png](https://drive.google.com/uc?export=view&id=1-dhAzvtWGCcXK_LUVclGfCC-4ODgQqN9)
+The property market in the state is anticipated to maintain its upward trend, bolstered by the upcoming development projects. These include the Melaka Waterfront Economic Zone (MWEZ) with an expected completion date of 2035, and the ongoing construction of Harbour City Melaka by Hatten Land Ltd. These initiatives are set to have a positive impact on the state's property market.
 
-## Commercial Airlines Outlook 2007
+![MWEZ.png](https://lh6.googleusercontent.com/u3S4EjKsun7Jt-ps9r-lcqcxqUaZU_ivDgh3LXEvsizJRh9AQ5GxMCVMOOpPoznHfpnCPnAHyP4jsPEH667fTL2Kq877bu0YduAXCWbptZ-6_uCgzvZhQ2We_Son0_FRQiFDOybG)
 
-In 2007, commercial airlines in the USA faced numerous challenges, significantly impacting their operations and profitability. Rising fuel costs were a major concern, squeezing profit margins and leading to increased ticket prices.
+## Terraced Property Outlook
 
-Additionally, heightened security measures post-9/11 continued to affect passenger convenience and operational efficiency. The industry also grappled with fluctuating demand, partly due to economic uncertainty and competition from low-cost carriers. 
+The property market in Melaka is interesting to watch with the launch of two exciting residential projects: Scientex Durian Tunggal 2 and Bandar Botani Parkland. These developments, spanning 202 acres of land, offer single and double storey terraced homes, making them a prime choice for homebuyers seeking quality living spaces. Keep an eye on these segments, as they are likely to be in high demand in the near future.
 
-Weather-related disruptions and airport congestion further contributed to delays and cancellations, straining customer satisfaction. These challenges necessitated strategic adaptations, including cost-cutting measures, improved fuel efficiency and enhanced customer service to navigate the turbulent landscape of the aviation industry.
+![SCIENTEX.png](https://scientex.com.my/wp-content/uploads/2021/09/Aerial-View-Photo.jpeg)
 
 ## Code and Resources Used
 
-* Hortonworks HDP Sandbox Version: 2.6.5.0
-* Putty Version: 0.81
-* Hive Version: 1.2.1000
-* Google Colab 
-* Packages: pandas, numpy, matplotlib, seaborn, plotly express
-* Dataset Source: (Kaggle) https://tinyurl.com/u8rzvdsx
+* __Jupyter Notebook Version__: 6.5.4
+* __Packages__: pandas, numpy, scipy, matplotlib, seaborn, plotly express, sklearn
+* __Dataset Source__: https://napic2.jpph.gov.my/ms/data-transaksi?category=36&id=241
 
 ## Dataset Information
 
-* [_**'2007.csv'**_](https://drive.google.com/file/d/1_uxUWJTDOBT0qDo_3B2zsSsPqs681M0v/view?usp=drive_link) contains flight data from Kaggle.
-* [_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
-* [_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
-* [_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
-* [_**'Hive_Database'**_](https://https://drive.google.com/drive/folders/1NuZ2zLbHpZJo_KdzQ7wiQnHNN_VEEkyi?usp=drive_link) contains processed data from Hive that are being used to analyse the flight delays and cancellations in this project.
+[_**'dataset_2022.csv'**_](https://github.com/wafiesa/Codes/blob/master/dataset_2022.csv) contains data from National Property Information Centre (NAPIC).<br>
+[_**'latlong.csv'**_](https://github.com/wafiesa/Codes/blob/master/latlong.csv) contains latitude and longitude information for scheme name/area. This lat and long information were built from https://postcode.my/location/melaka/ based on scheme name/area from dataset_2022.<br>
+[_**'melaka_terraced_property_sales_2022.csv'**_](https://github.com/wafiesa/Codes/blob/master/melaka_terraced_property_sales_2022.csv) contains data generated from Jupyter Notebook following cleaning processes.
 
-#### Flight Data 2007 Table
+## [1. Data Cleaning](https://github.com/wafiesa/Codes/blob/master/Melaka_Terraced_Property_Sales_2022.ipynb)
 
-| **Attribute**        | **Type** | **Attribute**           | **Type** |
-|----------------------|----------|-------------------------|----------|
-| **year**             | string   | **crselapsedtime**: Estimated Elapsed time, in minutes | int      |
-| **month**: 1-12      | string   | **actualelapsedtime**: Actual Elapsed time, in minutes   | int      |
-| **dayofmonth**: 1-31 | string   | **origin**: Origin IATA airport code                    | string   |
-| **dayofweek**: 1 (Monday) - 7 (Sunday) | string   | **dest**: Destination IATA airport code              | string   |
-| **crsdeptime**: scheduled departure time (local, hhmm) | string   | **distance**: Distance between airports in miles   | int      |
-| **deptime**: actual departure time (local, hhmm) | string   | **taxiin**: Wheels down and arrival at the destination airport gate, in minutes | int      |
-| **crsarrtime**: scheduled arrival time (local, hhmm) | string   | **taxiout**: The time elapsed between departure from the origin airport gate and wheels off, in minutes | int      |
-| **arrtime**: actual arrivaltime (local, hhmm) | string   | **cancelled**: was the flight cancelled?            | bool     |
-| **uniquecarrier**: Carrier Code | string   | **cancellationcode**: reason for cancellation (A = carrier, B = weather, C = NAS, D = security) | string   |
-| **flightnum**: Flight Number | string   | **diverted**: 1 = yes, 0 = no                       | bool     |
-| **tailnum**: Plane Tail Number | string   | **carrierdelay**: Delay (in minutes) caused by Carrier | int      |
-| **airtime**: flight time in minutes | int      | **weatherdelay**: Delay caused by weather, in minutes | int      |
-| **arrdelay**: difference in minutes between scheduled and actual arrival time. Early arrivals show negative numbers, in minutes | int      | **nasdelay**: National Air System Delay, in minutes | int      |
-| **depdelay**: Difference in minutes between scheduled and actual departure time. Early departures show negative numbers, in minutes | int      | **securitydelay**: Security Delay, in Minutes | int      |
-|                      |          | **lateaircraftdelay**: Late Aircraft Delay, in Minutes | int      |
+In this part, we will begin our exploratory data analysis (EDA) by viewing the dataset_2022.csv.
 
-#### Airport Attributes Table
+#### Dataset overview
 
-| **Attribute**          | **Type** | **Attribute**           | **Type** |
-|------------------------|----------|-------------------------|----------|
-| **airport**: Airport Name  | string   | **lat**: Airport Latitude  | string   |
-| **city**: Airport City     | string   | **long**: Airport Longitude | string   |
-| **country**: Airport Country | string   | **state**: Airport State  | string   |
-| **iata**: Airport Code     | string   |                         |          |
+|	  |Property Type				      |District	  |Mukim				       |Scheme Name/Area			  |Month, Year of Transaction Date	 |Tenure		 |Land Area	 |Unit	 |Main Floor Area	|Transaction Price|
+|---|---------------------------|-----------|------------------- |------------------------|----------------------------------|-----------|-----------|-------|-------------------|-----------------|
+|0	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Alor Gajah	     |TAMAN SERI BAYU	        |October 2022	                     |Leasehold	 |143.0	     |sq.m	 |85.84	             |200000           |
+|1	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Masjid Tanah	   |TAMAN BKT INDAH			    |July 2022							           |Freehold	 |143.0		   |sq.m	 |76.64				       |173000			     |
+|2	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Masjid Tanah	   |TAMAN BKT INDAH			    |September 2022					           |Freehold	 |143.0	     |sq.m	 |77.01				       |210000           |
+|3	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Belimbing			     |TAMAN BELIMBING HARMONI	|October 2022						           |Leasehold	 |232.0	     |sq.m	 |75.72				       |361111           |
+|4	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Belimbing			     |TAMAN VISTA BELIMBING	  |January 2022						           |Freehold	 |128.0	     |sq.m	 |83.61				       |230000           |
 
-#### Carrier Attributes Table
+🔶 Insights: The data contains 2870 rows with 10 columns.  
 
-| **Attribute**          | **Type** | **Attribute**            | **Type** |
-|------------------------|----------|--------------------------|----------|
-| **code**: Carrier Code | string   | **description**: Carrier name | string   |
+The dataset_2022.csv provides detailed information on property transactions, including property type, district, mukim, scheme name/area, transaction date (month and year), tenure, land area, unit, main floor area, and transaction price. This information is useful for exploratory analysis.
 
-#### Plane Attributes Table
+#### Data Cleaning
 
-| **Attribute**              | **Type** | **Attribute**             | **Type** |
-|----------------------------|----------|---------------------------|----------|
-| **tailnum**: Aircraft Tail Number   | string   | **status**: Status                | string   |
-| **type**: Usage Type                 | string   | **aircraft_type**: Aircraft Type  | string   |
-| **manufacturer**: Manufacturer Company | string   | **engine_type**: Engine Type      | string   |
-| **issue_date**: Date Start Operating  | string   | **year**: Manufacture Year        | int      |
-| **model**: Aircraft Model             | string   |                                   |          |
+We have observed that the dataset expresses the 'Land Area' and 'Main Floor Area' in square meters (sq. meter). Although it is sufficient for performing exploratory data analysis, it is worth noting that square feet measurement is the most commonly used nomenclature in the real estate market to represent the size of a property.
 
+We have convert the Land Area and Main Floor Area into square feet (sq.ft). Furthermore, we can conveniently rename the Land Area to Land Size and the Main Floor Area to Build Size. 
 
-#### Data Import To Hadoop File And Hive Database
+Moreover, we have successfully transformed the column 'Month, Year of Transaction Date' into a date column.
+ 
+|	  |Property Type			        |District	  |Mukim				       |Scheme Name/Area			   |Month, Year of Transaction Date	|Tenure		  |Land Size	|Unit	  |Build Size	|Transaction Price|
+|---|---------------------------|-----------|--------------------|-------------------------|--------------------------------|-----------|-----------|-------|-----------|-----------------|
+|0	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Alor Gajah	     |TAMAN SERI BAYU	         |2022-10-01	                    |Leasehold	|1539.2377  |sq.ft	|923.9731	  |200000           |
+|1	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Masjid Tanah	   |TAMAN BKT INDAH			     |2022-07-01							        |Freehold	  |1539.2377	|sq.ft	|824.9453		|173000			      |
+|2	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Masjid Tanah	   |TAMAN BKT INDAH			     |2022-09-01					            |Freehold	  |1539.2377  |sq.ft	|828.9279		|210000           |
+|3	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Belimbing			     |TAMAN BELIMBING HARMONI  |2022-10-01						          |Leasehold	|2497.2248  |sq.ft	|815.0425		|361111           |
+|4	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Belimbing			     |TAMAN VISTA BELIMBING	   |2022-01-01						          |Freehold	  |1377.7792	|sq.ft	|899.9697		|230000           |
 
-The 2007.csv contains huge dataset that consumed approximately over 686.5MB. Thus exceeding the maximum file handling for Putty and Hortonworks Sandbox HDP 2.6.5.0.
+🔶 Insights: We have renamed a few columns and converted values for Land Size and Build Size to square feet measurement. 
 
-However, we can use Command Prompt to upload the 2007.csv into Putty by using SCP client for command line secure file copy pscp.exe which is downloadable from https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html.
+#### Latitude and Longitude Positions
 
-The dataset can be downloaded by putting together the command below:
+Before creating an interactive map, it is necessary to acquire the approximate latitude and longitude positions for each scheme name/area. As these positions are not included in the dataset, we can obtain them through the integration API between portal postcode.my and Google Maps.
 
-#### Command Prompt
+|	  |Scheme Name/Area			  |Lat	    |Long		    |
+|---|-----------------------|---------|-----------|
+|0	|TAMAN SERI BAYU	      |2.384740 |102.212509 |
+|1	|TAMAN BKT INDAH			  |2.350550	|102.103860 |
+|2	|TAMAN BKT INDAH			  |2.350550 |102.103860 |
+|3	|TAMAN BELIMBING HARMONI|2.335506	|102.266894 |
+|4	|TAMAN VISTA BELIMBING  |2.328142	|102.266958 |
 
-```
-Microsoft Windows [Version 10.0.22631.3593]
-(c) Microsoft Corporation. All rights reserved.
+The portal provides access to 457 scheme names/areas, which can be leveraged to generate positions. However, the original dataset requires the integration of latitude and longitude positions to facilitate this process.
 
-C:\Users\Name>cd C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PuTTY (64-bit)
+|	  |Property Type			        |District	  |Mukim				       |Scheme Name/Area			   |Lat       |Long       |Month, Year of Transaction Date |Tenure		  |Land Size	|Unit	  |Build Size	|Transaction Price|
+|---|---------------------------|-----------|--------------------|-------------------------|----------|-----------|--------------------------------|------------|-----------|-------|-----------|-----------------|
+|0	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Alor Gajah	     |TAMAN SERI BAYU	         |2.384740  |102.212509 |2022-10-01	                     |Leasehold	  |1539.2377  |sq.ft	|923.9731	  |200000           |
+|1	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Masjid Tanah	   |TAMAN BKT INDAH			     |2.350550	|102.103860 |2022-07-01							         |Freehold	  |1539.2377	|sq.ft	|824.9453		|173000			      |
+|2	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Bdr Masjid Tanah	   |TAMAN BKT INDAH			     |2.350550 |102.103860  |2022-09-01					             |Freehold	  |1539.2377  |sq.ft	|828.9279		|210000           |
+|3	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Belimbing			     |TAMAN BELIMBING HARMONI  |2.335506	|102.266894 |2022-10-01						           |Leasehold	  |2497.2248  |sq.ft	|815.0425		|361111           |
+|4	|1 - 1 1/2 Storey Terraced	|Alor Gajah	|Belimbing			     |TAMAN VISTA BELIMBING	   |2.328142	|102.266958 |2022-01-01						           |Freehold	  |1377.7792	|sq.ft	|899.9697		|230000           |
 
-C:\ProgramData\Microsoft\Windows\Start Menu\Programs\PuTTY (64-bit)>pscp -P 2222 "C:\Users\Name\Desktop\Data Management\2007.csv" maria_dev@127.0.0.1:2007.csv
-```
+🔶 Insights: We have combined the latitude and longitute into the dataset_2022.csv and renamed it to melaka_terraced_property_sales_2022.csv.
 
-#### PuTTY Commands
+Let's explore Melaka Property Sales Year 2022 with useful statistics, now that the dataset has been processed to the desired format.
 
-```
-hadoop fs -mkdir flight_data_2007
-hadoop fs -put 2007.csv flight_data_2007
-```
+## 2. Data Visualizations 
 
-Similarly we can repeat the steps above to load datasets for airports.csv, carriers.csv and plane-data.csv into Hadoop. Now, that the dataset is loaded in HDP, we can import the datasets into Hive Database using Query Editor as below:
+#### Statistics
 
-![LocateDirectory](https://drive.google.com/uc?export=view&id=1-POyFl0fvMM1ozXbLP48uZz46IG17pRh)
+![formatted_statistics.png](https://github.com/wafiesa/Codes/blob/master/formatted_statistics.png)
 
-**Image 1: Screenshoot to locate Hadoop file directory.**
+From the statistics summary above, we can observe that there were 2870 transactions made in the year 2022. 
 
-Once the HDP is ready, we can locate the file directory from the File Preview. This directory will be use to upload into Hive Database as shown in the figure below:
+The maximum transaction price was recorded at RM1.2 million while the minimum transaction price was clocked at RM90,000.00. The mean transaction price is RM302,953.82.
 
-![HiveDatabase](https://drive.google.com/uc?export=view&id=1-KSNbdfQ88xfKTC-iQET9CGDWdxjO9N6)
+Since the dataset represents single storey and double storey terraced houses, we can visualize the data accroding to each type of property.
 
-**Image 2: Screenshot of upload table in Hive HDP.**
+#### Boxplots
 
-Similarly we can repeat the steps above to load datasets into Hive Database for airports.csv, carriers.csv and plane-data.csv. Now, that the dataset is loaded in Hive, we can overview and explore the datasets using Query Editor.
+![Boxplot_for_Transaction_Price.png](https://github.com/wafiesa/Codes/blob/master/Boxplots_For_Transaction_Price.png)
 
-First, we combine the datasets by identifying the most relevant variables. This will give more insights of the data.
+The boxplots above illustrate the property types according to the districts. Furthermore, the boxplots also indicate the single storey terraced and double storey terraced houses by land status (tenure) for Freehold and Leasehold.
 
-We can join the selected variables using the command below:
+We can noticed that there are outliers it the boxplots but we want to retain it for visualization in the map.  
 
-![JoinTables](https://drive.google.com/uc?export=view&id=1-SyieMk0X1ZtvJMC1rgTT7-uGAN8u_Ak)
+#### Heatmap
 
-**Image 3: Query to join all four tables for better insights.**
+![Heatmap_District_Type.png](https://github.com/wafiesa/Codes/blob/master/Heatmap_District_Type.png)
 
-## 1. Optimal Times In Day, Week And Year For Minimizing Flight Delays
+The heatmap above shows the comparisson between property types and the districts. Melaka Tengah sees more single storey terraced sold in 2022 at 969 units comparing to Jasin of 471 units while Alor Gajah of 375 units.
 
-The query above will generate huge dataset exceeding 1.3GB and data this big will not ideal for local data processing. Thus we will carefully select the suitable variables that could contribute to flight delays and cancellations.
+While sale transactions of double storey terraced sold in Melaka is recorded highest in Melaka Tengah at 646 units followed by Alor Gajah of 313 and Jasin of 96 units.
 
-Now, we will execute query as below:
+![type_counts.png](https://github.com/wafiesa/Codes/blob/master/type_counts.png)
 
-#### Performing Query in Hive
+Overall, single storey terraced houses were sold a total of 1815 units compared to 1055 units of double storey terraced houses.
 
+![Heatmap_District_Tenure](https://github.com/wafiesa/Codes/blob/master/Heatmap_District_Tenure.png)
 
-![DayofMonth](https://drive.google.com/uc?export=view&id=1-C2vwmYG3gMc7B4zRWGUhrONEpBqOK9h)
+![district_count](https://github.com/wafiesa/Codes/blob/master/district_counts.png)
 
-**Image 4: Query to extract delays in days of month.**
+From the heatmap of district versus tenure above we can observe that majority transactions were concenrated in Melaka Tengah district with 1615 units sold followed by Alor Gajah at 688 units and Jasin at 567 units.
 
-![DayofWeek](https://drive.google.com/uc?export=view&id=1-PK6UTammAql_SrD62ijFNHoODv7CZxo)
+In the aspect of tenure, freehold property are more preferred with 1633 representing 854 units from Melaka Tengah, 468 units and 311 unit for Jasin. 
 
-**Image 5: Query for to extract delays during the weeks.**
+Meanwhile leasehold residentials were recorded at 1237 transactions representing 761 units in Melaka Tengah, 256 units in Jasin and 220 units in Alor Gajah.
 
-![Month](https://drive.google.com/uc?export=view&id=1-5TfSow0q1hfc0DCpRX6ffidvIL3xYTE)
+#### Interactive Map
 
-**Image 6: Query to extract delays over the months.**
+![map_all.png](https://github.com/wafiesa/Codes/blob/master/map_all.png).<br>**Map 1: Hotspots for overall locations.** 
 
-![PrimaryFactorsDelays](https://drive.google.com/uc?export=view&id=1JghPvwrHt16RYbcYGaUf9ys4_HaQst_f)
+Using latitude and longitude information, we can scatter plot using plotly.express package to visualize the approximate positions for every scheme name/area. Off course, the interactive features do not available here but by running the codes it is so much interesting. Your can obtain some of information when you hover the map.
 
+From the figure above, we can see that yellow circle represents higher transaction price and easy to locate on the map. The position of yellow circle represent most higher value transaction is located in Taman Residence Lapan, Melaka Tengah.
 
-**Image 7: Query to extract primary factors for flight delays and cancellations.**
+Similarly, the most concentrated dots are located in Melaka Tengah as it is near to central business district (CBD). This followed by the Bandar Botani Parkland where it records 124 transactions in 2022.
 
-![FactorsCancellations](https://drive.google.com/uc?export=view&id=1hAKbB0dYrAQFLJZSz0DTfgqrSJgNjGZb)
+![map_all_count.png](https://github.com/wafiesa/Codes/blob/master/map_all_count.png).<br>**Map 2: Hotspots for transactions.** 
 
-**Image 8: Query to extract factors for flight cancellations.**
+Figure above shows the transactions count over the scheme name/area. It is contradictory with previous plot map since the most transactions count were outside Melaka Tengah.
 
-![MostDelays&Cancelled](https://drive.google.com/uc?export=view&id=1-VR-Jh-R6jDuwu9c_Ds5ZkGj8O5KQ0Ck)
+Specifically, the highest count was recorded at 154 transactions located in Taman Scientex (Bukit Tambun Perdana) in the proximity Durian Tunggal, Alor gajah.
 
-**Image 9: Query to extract most frequent delays and flight cancellations.**
+![map_1stry.png](https://github.com/wafiesa/Codes/blob/master/map_1stry.png).<br>**Map 3: Hotspots for single storey locations.**
 
-#### The Heatmap Day of Month
+Figure above displays the locations for every single storey terraced sold in 2022. Ideally, Melaka Tengah seems to be very active in terms of populated dots on the map.  
 
-![HeatmapDayofMonth](https://drive.google.com/uc?export=view&id=1U-pjZRf6CW7lfONylPoC0yAacAuK11Br)
+![map_1stry_count.png](https://github.com/wafiesa/Codes/blob/master/map_1stry_count.png)<br>**Map 4: Hotspots for single storey transactions.** 
 
-🔶 Insights: From the figure above, we can observe that the least delayed flights during the day were in the time intervals of 0000-0259 hour and 0300-0559 hour. This early morning flights have the lowest delays.
+However, records show that Jasin was attractive enough to pull homebuyers in 2022. The transactions count were recorded at 124 in Botani Parkland alone. Additionally, high value residential such Country Villa in Jasin was also contributing atleast 44 transactions.
 
-#### The Heatmap Day of Week
+![map_2stry.png](https://github.com/wafiesa/Codes/blob/master/map_2stry.png),<br>**Map 5: Hotspots for double storey locations.**
 
-![HeatmapDayofWeek](https://drive.google.com/uc?export=view&id=1Ih2BdhBbZvW8yKaw1jKQBAdzGjIUqACb)
+In 2022, 1085 units of double storey terraced were sold in Melaka. Although Taman Anggerik (Lot 71) in Melaka Tengah recorded the highest market value for double storey of RM390,000.00 but it has serious contender from Jasin which is Country Villas at RM380,000.00. Both the residentials have almost identical build size of 1537.95 and 1471.75 respectively.     
 
-🔶 Insights: From the Heatmap of Departure Delays by Time Interval and Day of Week, we can observe that the least delayed flights during the week were on Wednesday in the time intervals 0000-0259.
+![map_2stry_count.png](https://github.com/wafiesa/Codes/blob/master/map_2stry_count.png).<br>**Map 6: Hotspots for double storey transactions.**
 
-#### The Heatmap of Month
+Nevertheless, Alor Gajah seems has stole a spotlight since the highest transactions count was recorded in Taman Scientex (Bukit Tambun Perdana). The new development in Alor Gajah has managed to attract homebuyers to settle in the district. 
 
-![HeatmapofMonth](https://drive.google.com/uc?export=view&id=1fXQc4ArwRgSF9xdGBejLs6B-35bDJymJ)
+## 3. The Insights
 
-🔶Insights: From the Heatmap of Departure Delays by Time Interval and Month, we can observe that the least delayed flights during the year was on the month of February 2007 in the time intervals 0000-0259.
+#### Regression Analysis
 
-#### Interactive Map of Airports Delays
+![distplot_price.png](https://github.com/wafiesa/Codes/blob/master/distplot_price.png) ![distplot_build.png](https://github.com/wafiesa/Codes/blob/master/distplot_build.png)
 
-![HotspotsofAirports](https://drive.google.com/uc?export=view&id=11KzHnK-XLIUtLDNgFWKu-bXMoURW4X3M)
+From the density plot above, we can observe that the price range for the transactions is concentrated between RM200,000.00 up to RM300,000.00. Now, this explains that the density for build size is in the region between 800 sq.ft to 900 sq.ft.
 
-The interactive map above gives the view of the first 100,000 delays among the operated airports. The blue dots explains lesser delays while yellow dots have more delays of approximately closer to 60,000 delays in a year.
+The densities demonstrate that high purchase volume for the residential in the price range as well as the build size in concern. 
 
-## 2. Primary Factors Contributing Flight Delays
+Using linear regression model, we can determined the coefficient among dependend and independend variables. From the computation in sklearn.linear_model package, the results for the variables are as follows:
 
-From the table below, we can observe that the most significant factor, with a total of 22,091,176 minutes of delay is the caused from Late Aircraft. Delays caused by a late incoming aircraft often cascade to affect the departure times of subsequent flights operated by the same aircraft.
+Coefficient: [195.0251, 55.3691]
+Intercept: -12227.5884
 
-Meanwhile Carrier delays, which total 16,590,482 minutes, typically include factors such as maintenance or ground problems. These are directly controlled by the air carrier.
+Thus, the regression can be represent as in the model below: 
 
-Additionally, National Airspace System (NAS) includes delays of 16,535,622 minutes that are due to non-extreme weather conditions, airport operations, heavy traffic volume, and air traffic control.
-
-Weather-related delays accounted for 3,408,203 minutes. These delays are due to significant meteorological conditions (such as storms or fog) that affect flight operations and safety.
-
-Lastly, security delays are the least common cause, with 100,274 minutes of delay. This includes delays due to evacuations of terminals, re-boarding of aircraft due to security breaches, inoperative screening equipment and long lines at screening areas.
-
-![BargraphReasons](https://drive.google.com/uc?export=view&id=16-yooNRt5B2BHTV46Wh2s77cfiE7xkAC)
-
-| Reason        | Total Time (minutes)    |
-|---------------|---------------|
-| Late Aircraft | 22091176      |
-| Carrier       | 16590482      |
-| NAS           | 16535622      |
-| Weather       | 3408203       |
-| Security      | 100274        |
-
-🔶Insights: The table above shows that late aircraft delays were the highest cause of delay, totalling 22,091,176 minutes. This was followed by delays caused by the carriers, totalling 16,590,482 minutes.
-
-## 3. Factors Leading To Flight Cancellations
-
-|Month	|Flight Number	|Carrier Description	|Destination Airport	|Origin Airport	|Diverted	|Weather Delay	|NAS Delay	|Security Delay	|Late Aircraft Delay	|Cancelled	|Total Cancellations|
-|---------|--------|--------|------|---------|---------|---------|--------|-------|------|-----|------|
-|1	|33	|Alaska Airlines Inc.	|Ted Stevens Anchorage International	|Kodiak	|0	|0	|0	|0	|0	|1	|13|
-|1	|32	|Alaska Airlines Inc.	|Kodiak	|Ted Stevens Anchorage International	|0	|0	|0	|0	|0	|1	|13|
-|1	|7098	|Mesa Airlines Inc.	|Denver Intl	|Aspen-Pitkin Co/Sardy	|0	|0	|0	|0	|0	|1	|11|
-|1	|4825	|Atlantic Southeast Airlines	|William B Hartsfield-Atlanta Intl	Erie Intl	|0	|0	|0	|0	|0	|1	|10|
-|1	|7115	|Mesa Airlines Inc.	|Chicago O'Hare International	|Austin Straubel International	|0	|0	|0	|0	|0	|1	|10|
-
-🔶Upon reviewing the table above, it is apparent that the top 5 highest flight cancellations are not attributed to weather conditions, late aircraft delays, NAS delays, or flight diversions.
-
-Another potential factor contributing to flight cancellations could be low passenger bookings, which may lead airlines to cancel flights. Additionally, technical issues with the flights, not included in the dataset, might also contribute to these cancellations.
-
-**Performing Multiple Linear Regression**
-
-We can perform multiple linear regression to identify coefficients among independent variables in the table above. Ideally, this regression will determine the response of variables to the dependent variable as the MLR model below:
-
-$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_4+ \beta_5 X_5+ \beta_6 X_6 + \beta_7 X_7 + \beta_8 X_8$$
-
-From there, we are able to develop a multiple linear regression model to determine response of dependent variable to the independent variables as follow:
-
-$$Total Cancellation = 0.0637 -0.0637(Diverted) - 0.02004(Weather) - 0.04669(NAS) -0.02333(Security) - 0.0403(Late Aircraft) + 0(Flight Num) + 0(Carrier) + 0(Origin Airport)$$
-
-## 4. Most Frequent Delays And Cancellations
-
-|Flight Number	|Carrier	|Total Delay (minutes)	|Total Cancellations|
-|----|----|----|------|
-|2996	|Expressjet Airlines Inc.	|20048.0	|0|
-|64	|Alaska Airlines Inc.	|19063.0	|31|
-|2393	|Expressjet Airlines Inc.	|18001.0	|0|
-|2782	|Expressjet Airlines Inc.	|17997.0	|0|
-|44	|Southwest Airlines Co.	|17584.0	|0|
-
-🔶Insights: Based on the data provided in the table, it is evident that Expressjet Airlines flight number 2996 experienced the highest frequency of delays, accumulating a total of 20,048 minutes of delay. Following closely behind is Alaska Airlines with flight number 64, which accumulated 19,063 minutes of delay. Additionally, other flights operated by Expressjet Airlines also ranked among the top 5 most frequently delayed flights, including flight number 2393 with 18,001 minutes of delay and flight number 2782 with 17,997 minutes of delay.
-
-In a separate analysis, it was observed that Alaska Airlines flight number 64 was cancelled 31 times over the course of the year, making it the flight with the highest number of cancellations.
+![MLR.png](https://github.com/wafiesa/Codes/blob/master/MLR.png)
 
 ## Recommendations
 
-#### Choosing Airliners
+#### Utilize Interactive Map for Market Analysis
 
-When selecting an airline, consider to review on-time performance, cancellation policies for each the choosen routes. Based on the analysis above, we can use the findings to choose wisely for a better journey.
+Housing developers should leverage the interactive map to conduct in-depth market analysis by exploring transaction patterns, pricing trends and demand hotspots across different scheme name/areas in Melaka. This will facilitate informed decision-making in formulating pricing strategies and identifying lucrative development opportunities.
 
-#### Route Selections
+#### Monitor Future Development Projects 
 
-Choosing the right flight route is crucial for enhancing your travel experience. Opt for ideal flights to avoid potential delays or possibly cancellations. Seasonal weather patterns should also influence your decision, as certain routes might be prone to weather-related disruptions.
+Given the anticipated growth momentum in Melaka's property market, it's crucial for developers to closely monitor upcoming development projects such as Melaka Waterfront Economic Zone (MWEZ) and Harbour City Melaka. These projects are expected to drive demand and reshape the landscape of the property market, presenting potential investment opportunities.
 
-![NumberofFlights](https://drive.google.com/uc?export=view&id=1hANtQRhpY7nOmvQacN0Jk0w8hokkf_Ch)
+#### Adapt Business Strategies
 
+Based on the insights derived from the interactive map and market analysis, housing developers should adapt their business strategies accordingly. This may involve diversifying product offerings, targeting specific customer segments, or adjusting pricing strategies to remain competitive in the dynamic market landscape.
+
+#### Enhance Customer Engagement
+
+The interactive map can also serve as a valuable tool for enhancing customer engagement and marketing efforts. Developers can leverage the map to provide potential buyers with detailed information about available properties, amenities and surrounding infrastructure, thereby improving transparency and fostering trust with customers.
+
+#### Collaborate with Stakeholders
+
+Collaboration with local authorities, real estate agencies and other stakeholders can further enhance the effectiveness of the interactive map and promote sustainable growth in the property market. By sharing data and insights, stakeholders can collectively address challenges, identify opportunities and contribute to the overall development of Melaka's property sector.
 
 ## Conclusion
 
-When planning your travel, it's essential to compare airlines based on their service records, which include their punctuality and cancellations policy. Additionally, you might need to consider the flights frequency for the airlines as this will ensure you will get on the next flight whenever cancellations occured.
+In conclusion, the development of an interactive map for single and double storey terraced property sales in Melaka for the year 2022 offers valuable insights and opportunities for housing developers. A comprehensive dataset covering transaction details, property attributes and geographic information, developers can gain a deeper understanding of market dynamics and consumer preferences.
 
-Inconclusion, research different airlines for the best service records and convenience on your chosen route.
+The analysis revealed that Melaka's property market recorded significant transactions in 2022, with single and double storey terraced properties accounting for a substantial portion of the market activity. Key insights such as pricing trends, demand hotspots and upcoming development projects provide developers with actionable information to formulate effective business strategies and capitalize on emerging opportunities.
+
+Moving forward, it is recommended that developers leverage the interactive map to conduct detailed market analysis, monitor future development projects, adapt business strategies, enhance customer engagement and collaborate with stakeholders. By doing so, developers can navigate the evolving property landscape in Melaka and drive sustainable growth in the industry.
