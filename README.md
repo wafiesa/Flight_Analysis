@@ -31,7 +31,7 @@ Weather-related disruptions and airport congestion further contributed to delays
 * [_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
 * [_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
 * [_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
-* [_**'Hive_Database'**_](https://https://drive.google.com/drive/folders/1NuZ2zLbHpZJo_KdzQ7wiQnHNN_VEEkyi?usp=drive_link) contains processed data from Hive that are being used to analyse the flight delays and cancellations in this project.
+* [_**'Hive_Database'**_](https://drive.google.com/drive/folders/1NuZ2zLbHpZJo_KdzQ7wiQnHNN_VEEkyi?usp=drive_link) contains processed data from Hive that are being used to analyse the flight delays and cancellations in this project.
 
 #### Flight Data 2007 Table
 
