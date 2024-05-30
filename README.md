@@ -31,7 +31,7 @@ Weather-related disruptions and airport congestion further contributed to delays
 * [_**'airports.csv'**_](https://drive.google.com/file/d/11LOOCCHElb9bcOP2BLQxtQ9QAsb11lYi/view?usp=drive_link) contains details such latitude and longitude information for airports.
 * [_**'carriers.csv'**_](https://drive.google.com/file/d/1LJjOcBxGLH-dpo-kI_ZwBdtt9IQmMz9q/view?usp=drive_link) contains description for commercial airlines operators.
 * [_**'plane-data.csv'**_](https://drive.google.com/file/d/1Mwe1NHfG1ngYoAO6f41GGdjr8iZqh9yF/view?usp=drive_link) contains information of type of planes used by airliners and the manufacturers.
-
+* [_**'Hive_Database'**_](https://https://drive.google.com/drive/folders/1NuZ2zLbHpZJo_KdzQ7wiQnHNN_VEEkyi?usp=drive_link) contains processed data from Hive that are being used to analyse the flight delays and cancellations in this project.
 
 #### Flight Data 2007 Table
 
@@ -179,6 +179,12 @@ Now, we will execute query as below:
 
 🔶Insights: From the Heatmap of Departure Delays by Time Interval and Month, we can observe that the least delayed flights during the year was on the month of February 2007 in the time intervals 0000-0259.
 
+#### Interactive Map of Airports Delays
+
+![HotspotsofAirports](https://drive.google.com/file/d/11KzHnK-XLIUtLDNgFWKu-bXMoURW4X3M/view?usp=drive_link)
+
+The interactive map above gives the view of the first 100,000 delays among the operated airports. The blue dots explains lesser delays while yellow dots have more delays of approximately closer to 60,000 delays in a year.
+
 ## 2. Primary Factors Contributing Flight Delays
 
 From the table below, we can observe that the most significant factor, with a total of 22,091,176 minutes of delay is the caused from Late Aircraft. Delays caused by a late incoming aircraft often cascade to affect the departure times of subsequent flights operated by the same aircraft.
@@ -223,7 +229,7 @@ We can perform multiple linear regression to identify coefficients among indepen
 
 $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_4+ \beta_5 X_5+ \beta_6 X_6 + \beta_7 X_7 + \beta_8 X_8$$
 
-From there, we are able to develop a multiple linear regression model to determine response of dependent variable to to the independent variables as follow:
+From there, we are able to develop a multiple linear regression model to determine response of dependent variable to the independent variables as follow:
 
 $$Total Cancellation = 0.0637 -0.0637(Diverted) - 0.02004(Weather) - 0.04669(NAS) -0.02333(Security) - 0.0403(Late Aircraft) + 0(Flight Num) + 0(Carrier) + 0(Origin Airport)$$
 
