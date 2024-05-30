@@ -181,7 +181,7 @@ Now, we will execute query as below:
 
 #### Interactive Map of Airports Delays
 
-![HotspotsofAirports](https://drive.google.com/file/d/11KzHnK-XLIUtLDNgFWKu-bXMoURW4X3M/view?usp=drive_link)
+![HotspotsofAirports](https://drive.google.com/uc?export=view&id=11KzHnK-XLIUtLDNgFWKu-bXMoURW4X3M)
 
 The interactive map above gives the view of the first 100,000 delays among the operated airports. The blue dots explains lesser delays while yellow dots have more delays of approximately closer to 60,000 delays in a year.
 
