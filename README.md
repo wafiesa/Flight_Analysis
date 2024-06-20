@@ -157,7 +157,7 @@ Now, we will execute query as below:
 
 **Image 8: Query to extract factors for flight cancellations.**
 
-![MostDelays&Cancelled](https://drive.google.com/uc?export=view&id=1-VR-Jh-R6jDuwu9c_Ds5ZkGj8O5KQ0Ck)
+![MostDelays&Cancelled](https://drive.google.com/uc?export=view&id=1GG-pVa9Fvu8xgAHxWY6v71caSjEWqVVB)
 
 **Image 9: Query to extract most frequent delays and flight cancellations.**
 
